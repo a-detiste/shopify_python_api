@@ -19,7 +19,7 @@ class ValidationException(Exception):
     pass
 
 
-class Session(object):
+class Session:
     api_key = None
     secret = None
     protocol = "https"
