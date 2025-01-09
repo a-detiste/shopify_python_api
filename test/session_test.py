@@ -3,8 +3,7 @@ from test.test_helper import TestCase
 import hmac
 from hashlib import sha256
 import time
-from six.moves import urllib
-from six import u
+import urllib.parse
 
 
 class SessionTest(TestCase):
@@ -182,7 +181,7 @@ class SessionTest(TestCase):
             "shop": "some-shop.myshopify.com",
             "code": "a94a110d86d2452eb3e2af4cfb8a3828",
             "timestamp": "1337178173",
-            "hmac": u("2cb1a277650a659f1b11e92a4a64275b128e037f2c3390e3c8fd2d8721dac9e2"),
+            "hmac": "2cb1a277650a659f1b11e92a4a64275b128e037f2c3390e3c8fd2d8721dac9e2",
         }
         self.assertTrue(shopify.Session.validate_hmac(params))
 
@@ -192,7 +191,7 @@ class SessionTest(TestCase):
         params = {
             "shop": "some-shop.myshopify.com",
             "code": "a94a110d86d2452eb3e2af4cfb8a3828",
-            "hmac": u("2cb1a277650a659f1b11e92a4a64275b128e037f2c3390e3c8fd2d8721dac9e2"),
+            "hmac": "2cb1a277650a659f1b11e92a4a64275b128e037f2c3390e3c8fd2d8721dac9e2",
         }
         self.assertFalse(shopify.Session.validate_params(params))
 
@@ -204,7 +203,7 @@ class SessionTest(TestCase):
                 2,
                 1,
             ],
-            "hmac": u("b93b9f82996f6f8bf9f1b7bbddec284c8fabacdc4e12dc80550b4705f3003b1e"),
+            "hmac": "b93b9f82996f6f8bf9f1b7bbddec284c8fabacdc4e12dc80550b4705f3003b1e",
         }
         self.assertEqual(True, shopify.Session.validate_hmac(params))
 

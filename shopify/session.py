@@ -1,6 +1,8 @@
 import time
 import hmac
 import json
+import urllib.parse
+import urllib.request
 from hashlib import sha256
 
 try:
@@ -9,10 +11,8 @@ except ImportError:
     import json
 import re
 from contextlib import contextmanager
-from six.moves import urllib
 from shopify.api_access import ApiAccess
 from shopify.api_version import ApiVersion, Release, Unstable
-import six
 
 
 class ValidationException(Exception):
@@ -28,7 +28,7 @@ class Session(object):
 
     @classmethod
     def setup(cls, **kwargs):
-        for k, v in six.iteritems(kwargs):
+        for k, v in kwargs.items():
             setattr(cls, k, v)
 
     @classmethod
@@ -165,7 +165,7 @@ class Session(object):
         """
 
         def encoded_pairs(params):
-            for k, v in six.iteritems(params):
+            for k, v in params.items():
                 if k == "hmac":
                     continue
 
